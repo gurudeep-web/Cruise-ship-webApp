@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+
+    <div class="dashboard">
+        <h2>Admin Controls</h2>
+        <ul>
+            <li><a href="#" onclick="manageItems()">Manage Menu Items</a></li>
+            <li><a href="#" onclick="registerVoyager()">Register New Voyager</a></li>
+        </ul>
+    </div>
+
+
+<!-- View All Orders Button -->
+<button id="view-orders-btn">View All Orders</button>
+<ul id="orders-list"></ul>
+
+<script>
+  const viewOrdersBtn = document.getElementById('view-orders-btn');
+  const ordersList = document.getElementById('orders-list');
+
+  viewOrdersBtn.addEventListener('click', function() {
+    ordersList.innerHTML = '';  // Clear previous results
+
+    // Fetch catering orders
+    db.collection('cateringOrders').get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          const order = doc.data();
+          const li = document.createElement('li');
+          li.textContent = `Item: ${order.item}, Quantity: ${order.quantity}`;
+          ordersList.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error("Error fetching orders:", error.message);
+      });
+  });
+</script>
+
+
+<!-- Add this to each HTML file, before the main.js script -->
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
+<script src="firebase.js"></script>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

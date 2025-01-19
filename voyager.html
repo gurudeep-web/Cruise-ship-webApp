@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyager Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Voyager Dashboard</h1>
+    </header>
+
+    <div class="dashboard">
+        <h2>Welcome, Voyager!</h2>
+        <ul>
+            <li><a href="#" onclick="orderCatering()">Order Catering Items</a></li>
+            <li><a href="#" onclick="orderStationery()">Order Stationery Items</a></li>
+            <li><a href="#" onclick="bookResort()">Book Resort-Movie Tickets</a></li>
+            <li><a href="#" onclick="bookBeautySalon()">Book Beauty Salon</a></li>
+            <li><a href="#" onclick="bookFitnessCenter()">Book Fitness Center</a></li>
+            <li><a href="#" onclick="bookPartyHall()">Book Party Hall</a></li>
+        </ul>
+    </div>
+ 
+    <!-- Voyager Registration Form -->
+    <form id="voyager-register-form">
+        <input type="email" id="voyager-email" placeholder="Email" required>
+        <input type="password" id="voyager-password" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+
+    <form id="login-form">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Firestore and Authentication
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Voyager Registration
+        const voyagerRegisterForm = document.getElementById('voyager-register-form');
+        voyagerRegisterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('voyager-email').value;
+            const password = document.getElementById('voyager-password').value;
+
+            // Create a new user using Firebase Authentication
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    console.log("Voyager registered:", userCredential.user);
+                    // You can redirect or store user data in Firestore here
+                })
+                .catch(error => {
+                    console.error("Error registering voyager:", error.message);
+                });
+        });
+
+        // Voyager Login
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Sign in the user
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    console.log("Signed in as:", userCredential.user.email);
+                    // Redirect to the dashboard or perform other actions
+                })
+                .catch(error => {
+                    console.error("Error signing in:", error.message);
+                });
+        });
+    </script>
+</body>
+</html>

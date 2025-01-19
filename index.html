@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruise Ship Services</title>
+    <style>
+        /* Inline CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            float: right;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background: #f2f2f2;
+        }
+
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .text {
+            color: #f2f2f2;
+            font-size: 24px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .login-options a {
+            display: block;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+        .order-section {
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+        }
+
+        .order-form input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .order-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+        }
+
+        footer a {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#orders">Order Now</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header with Slideshow -->
+    <header>
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="images/cruise1.jpg" style="width:100%">
+                <div class="text">Luxury Cruises</div>
+            </div>
+
+            <div class="mySlides fade">
+                <img src="images/cruise2.jpg" style="width:100%">
+                <div class="text">Explore the Seas</div>
+            </div>
+
+            <div class="mySlides fade">
+                <img src="images/cruise3.jpg" style="width:100%">
+                <div class="text">Unforgettable Journeys</div>
+            </div>
+        </div>
+
+        <br>
+
+        <!-- Dots for the slideshow -->
+        <div style="text-align:center">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <h1>Welcome to Cruise Ship Services</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container" id="services">
+        <h2>Login</h2>
+        <div class="login-options">
+            <a href="voyager.html">Voyager Login</a>
+            <a href="admin.html">Admin Login</a>
+            <a href="manager.html">Manager Login</a>
+            <a href="headcook.html">Head-Cook Login</a>
+            <a href="supervisor.html">Supervisor Login</a>
+        </div>
+    </div>
+
+    <!-- Order Forms Section -->
+    <div class="order-section" id="orders">
+        <h2>Place Your Orders</h2>
+
+        <!-- Catering Order Section -->
+        <div class="form-container">
+            <h3>Catering Order Form</h3>
+            <form id="catering-order-form" class="order-form">
+                <input type="text" id="item" placeholder="Item Name" required>
+                <input type="number" id="quantity" placeholder="Quantity" required>
+                <button type="submit">Place Catering Order</button>
+            </form>
+        </div>
+
+        <!-- Stationery Order Section -->
+        <div class="form-container">
+            <h3>Stationery Order Form</h3>
+            <form id="stationery-order-form" class="order-form">
+                <input type="text" id="stationery-item" placeholder="Stationery Item Name" required>
+                <input type="number" id="stationery-quantity" placeholder="Quantity" required>
+                <button type="submit">Place Stationery Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK and Initialize -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
+    <script src="firebase.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyB7riYs-cQHAWmj4lHtwiHv34KcjNwX4gE",
+            authDomain: "cruise-ship-7cd81.firebaseapp.com",
+            projectId: "cruise-ship-7cd81",
+            storageBucket: "cruise-ship-7cd81.firebasestorage.app",
+            messagingSenderId: "1034703347758",
+            appId: "1:1034703347758:web:8d8b70fb26e6a41a8cbfbf",
+            measurementId: "G-WFEVWY3M2C"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Catering Order Script
+        const cateringOrderForm = document.getElementById('catering-order-form');
+        cateringOrderForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const item = document.getElementById('item').value;
+            const quantity = document.getElementById('quantity').value;
+            const userId = auth.currentUser ? auth.currentUser.uid : "guest"; // Assuming guest order
+
+            const cateringOrder = {
+                item: item,
+                quantity: quantity,
+                userId: userId
+            };
+
+            db.collection('cateringOrders').add(cateringOrder)
+                .then(() => {
+                    alert("Catering order placed!");
+                })
+                .catch(error => {
+                    console.error("Error placing catering order:", error.message);
+                });
+        });
+
+        // Stationery Order Script
+        const stationeryOrderForm = document.getElementById('stationery-order-form');
+        stationeryOrderForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const item = document.getElementById('stationery-item').value;
+            const quantity = document.getElementById('stationery-quantity').value;
+            const userId = auth.currentUser ? auth.currentUser.uid : "guest"; // Assuming guest order
+
+            const stationeryOrder = {
+                item: item,
+                quantity: quantity,
+                userId: userId
+            };
+
+            db.collection('stationeryOrders').add(stationeryOrder)
+                .then(() => {
+                    alert("Stationery order placed!");
+                })
+                .catch(error => {
+                    console.error("Error placing stationery order:", error.message);
+               [_{{{CITATION{{{_1{](https://github.com/RifkiNoviandra/Olibrary/tree/850f63c96edbbcb7588abdd118fba0b20d808bcf/Olibrary_profil.php)[_{{{CITATION{{{_2{](https://github.com/msantiz/ParagonFarms/tree/32b7837f6713c86982ff0466e3861397435070fe/resources%2Fviews%2Fwelcome.blade.php)[_{{{CITATION{{{_3{](https://github.com/GaurabAryal/Fungeons-Web/tree/ff0103a65ed8373c0d519f1c3144882b1c55759a/index.php)
+                // Stationery Order Script
+        const stationeryOrderForm = document.getElementById('stationery-order-form');
+        stationeryOrderForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const item = document.getElementById('stationery-item').value;
+            const quantity = document.getElementById('stationery-quantity').value;
+            const userId = auth.currentUser ? auth.currentUser.uid : "guest"; // Assuming guest order
+
+            const stationeryOrder = {
+                item: item,
+                quantity: quantity,
+                userId: userId
+            };
+
+            db.collection('stationeryOrders').add(stationeryOrder)
+                .then(() => {
+                    alert("Stationery order placed!");
+                })
+                .catch(error => {
+                    console.error("Error placing stationery order:", error.message);
+                });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>© 2025 Cruise Ship Services. All rights reserved.</p>
+        <p>Contact us at <a href="mailto:info@cruiseshipservices.com">info@cruiseshipservices.com</a></p>
+    </footer>
+
+    <!-- Slideshow Script -->
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    </script>
+</body>
+
+</html>
